@@ -48,6 +48,16 @@ DIV: '/';
 MOD: '%';
 POW: '^';
 
+COMPARE: '<>';
+LT: '<';
+LTE: '<=';
+GT: '>';
+GTE: '>=';
+EQ: '==';
+EQ_STRICT: '===';
+NEQ: '!=';
+NEQ_STRICT: '!==';
+
 NOT: '!';
 AND: '&';
 XOR: '~';

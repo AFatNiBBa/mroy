@@ -20,6 +20,9 @@ expr
     | <assoc=right> expr POW expr
     | expr (MUL | DIV | MOD) expr
     | expr (PLUS | MINUS) expr
+    | expr COMPARE expr
+    | expr (LT | LTE | GT | GTE) expr
+    | expr (EQ | EQ_STRICT | NEQ | NEQ_STRICT) expr
     | expr AND expr
     | expr XOR expr
     | expr OR expr
