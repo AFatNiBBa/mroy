@@ -13,6 +13,7 @@ expr
     : NUMBER
     | ID
     | STRING
+    | CHAR
     | expr DOT ID
     | L_PAREN sequence R_PAREN
     | expr L_PAREN sequence? R_PAREN
