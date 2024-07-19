@@ -4,14 +4,31 @@ parser grammar mroyParser;
 options { tokenVocab = mroyLexer; }
 
 //////////////////////////////////////////////////////////////////////////
+// Statements                                                           //
+//////////////////////////////////////////////////////////////////////////
 
 start: body EOF;
 
 body: (sequence | SEMI)*;
 
-sequence: expr (COMMA expr)*;
-
 block: L_CURLY body R_CURLY;
+
+flow
+    : block
+    | FLOW_IF sequence block (FLOW_ELSE sequence)?
+    | FLOW_IF L_PAREN sequence R_PAREN sequence (FLOW_ELSE sequence)?
+    | FLOW_DO sequence FLOW_WHILE sequence
+    | FLOW_WHILE sequence block
+    | FLOW_WHILE L_PAREN sequence R_PAREN sequence
+    | FLOW_TRY sequence (FLOW_CATCH sequence | FLOW_CATCH ID block | FLOW_CATCH L_PAREN ID R_PAREN sequence)* (FLOW_FINALLY sequence)?
+    | (FLOW_QUOTE | FLOW_DEFER | FLOW_UNSAFE | FLOW_BOTCH) sequence
+    ;
+
+//////////////////////////////////////////////////////////////////////////
+// Expressions                                                          //
+//////////////////////////////////////////////////////////////////////////
+
+sequence: expr (COMMA expr)*;
 
 expr
     : NUMBER
@@ -34,15 +51,4 @@ expr
     | expr XOR expr
     | expr OR expr
     | flow
-    ;
-
-flow
-    : block
-    | FLOW_IF sequence block (FLOW_ELSE sequence)?
-    | FLOW_IF L_PAREN sequence R_PAREN sequence (FLOW_ELSE sequence)?
-    | FLOW_DO sequence FLOW_WHILE sequence
-    | FLOW_WHILE sequence block
-    | FLOW_WHILE L_PAREN sequence R_PAREN sequence
-    | FLOW_TRY sequence (FLOW_CATCH sequence | FLOW_CATCH ID block | FLOW_CATCH L_PAREN ID R_PAREN sequence)* (FLOW_FINALLY sequence)?
-    | (FLOW_QUOTE | FLOW_DEFER | FLOW_UNSAFE | FLOW_BOTCH) sequence
     ;
