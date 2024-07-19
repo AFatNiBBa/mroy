@@ -3,6 +3,23 @@ lexer grammar mroyLexer;
 
 //////////////////////////////////////////////////////////////////////////
 
+FLOW_IF: 'if';
+FLOW_ELSE: 'else';
+FLOW_FOR: 'for'; // TODO
+FLOW_DO: 'do';
+FLOW_WHILE: 'while';
+FLOW_SWITCH: 'switch'; // TODO
+FLOW_CASE: 'case'; // TODO
+FLOW_TRY: 'try';
+FLOW_CATCH: 'catch';
+FLOW_FINALLY: 'finally';
+FLOW_QUOTE: 'quote';
+FLOW_DEFER: 'defer';
+FLOW_UNSAFE: 'unsafe';
+FLOW_BOTCH: 'botch';
+
+//////////////////////////////////////////////////////////////////////////
+
 fragment NUMBER_BIN_DIGIT: '0'..'1';
 fragment NUMBER_BIN_INT: NUMBER_BIN_DIGIT ('_' | NUMBER_BIN_DIGIT)*;
 fragment NUMBER_BIN_SCIENT: 'e' [+-]? NUMBER_BIN_INT;
@@ -70,9 +87,12 @@ XOR: '~';
 OR: '|';
 
 COMMA: ',';
+SEMI: ';';
 
 L_PAREN: '(';
 R_PAREN: ')';
+L_CURLY: '{';
+R_CURLY: '}';
 
 SPACE: [ \r\n\t]+ -> skip;
 ERROR: .;
