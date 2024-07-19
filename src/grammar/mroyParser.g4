@@ -16,11 +16,12 @@ block: L_CURLY body R_CURLY;
 flow
     : block
     | FLOW_IF sequence block (FLOW_ELSE sequence)?
-    | FLOW_IF L_PAREN sequence R_PAREN sequence (FLOW_ELSE sequence)?
-    | FLOW_DO sequence FLOW_WHILE sequence
+    | FLOW_IF L_PAREN sequence R_PAREN sequence (SEMI? FLOW_ELSE sequence)?
+    | FLOW_FOR L_PAREN sequence? SEMI sequence? SEMI sequence? R_PAREN sequence
+    | FLOW_DO sequence SEMI? FLOW_WHILE sequence
     | FLOW_WHILE sequence block
     | FLOW_WHILE L_PAREN sequence R_PAREN sequence
-    | FLOW_TRY sequence (FLOW_CATCH sequence | FLOW_CATCH ID block | FLOW_CATCH L_PAREN ID R_PAREN sequence)* (FLOW_FINALLY sequence)?
+    | FLOW_TRY sequence (SEMI? (FLOW_CATCH sequence | FLOW_CATCH ID block | FLOW_CATCH L_PAREN ID R_PAREN sequence))* (SEMI? FLOW_FINALLY sequence)?
     | (FLOW_QUOTE | FLOW_DEFER | FLOW_UNSAFE | FLOW_BOTCH) sequence
     ;
 
@@ -39,7 +40,6 @@ expr
     | L_PAREN sequence R_PAREN
     | expr L_PAREN sequence? R_PAREN
     | expr STRING
-    | expr MOD
     | (LENGTH | PLUS | MINUS | MUL | NOT | AND | XOR) expr
     | <assoc=right> expr POW expr
     | expr (MUL | DIV | MOD) expr

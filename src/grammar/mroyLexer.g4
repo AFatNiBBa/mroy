@@ -7,7 +7,7 @@ lexer grammar mroyLexer;
 
 FLOW_IF: 'if';
 FLOW_ELSE: 'else';
-FLOW_FOR: 'for'; // TODO
+FLOW_FOR: 'for'; // TODO (Each)
 FLOW_DO: 'do';
 FLOW_WHILE: 'while';
 FLOW_SWITCH: 'switch'; // TODO

@@ -1,2 +1,10 @@
-1;;
-+2
+
+try
+    1,
+    2
+catch
+    3
+catch (a)
+    console.log(a);
+finally
+    4;
