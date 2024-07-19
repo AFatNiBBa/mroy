@@ -29,3 +29,4 @@ with
 symbols
 reflection
 interpolate
+perc%
