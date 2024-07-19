@@ -3,6 +3,41 @@ lexer grammar mroyLexer;
 
 //////////////////////////////////////////////////////////////////////////
 
+DOT: '.';
+
+LENGTH: '#';
+
+PLUS: '+';
+MINUS: '-';
+MUL: '*';
+DIV: '/';
+MOD: '%';
+POW: '^';
+
+COMPARE: '<>';
+LT: '<';
+LTE: '<=';
+GT: '>';
+GTE: '>=';
+EQ: '==';
+EQ_STRICT: '===';
+NEQ: '!=';
+NEQ_STRICT: '!==';
+
+NOT: '!';
+AND: '&';
+XOR: '~';
+OR: '|';
+
+COMMA: ',';
+
+L_PAREN: '(';
+R_PAREN: ')';
+
+SPACE: [ \r\n\t]+ -> skip;
+
+//////////////////////////////////////////////////////////////////////////
+
 fragment NUMBER_BIN_DIGIT: '0'..'1';
 fragment NUMBER_BIN_INT: NUMBER_BIN_DIGIT ('_' | NUMBER_BIN_DIGIT)*;
 fragment NUMBER_BIN_SCIENT: 'e' [+-]? NUMBER_BIN_INT;
@@ -37,35 +72,9 @@ ID: ID_CHAR_FIRST ID_CHAR*;
 
 //////////////////////////////////////////////////////////////////////////
 
-DOT: '.';
+STRING_START: '"' -> more, pushMode(STRING_HEAD);
 
-LENGTH: '#';
+mode STRING_HEAD;
 
-PLUS: '+';
-MINUS: '-';
-MUL: '*';
-DIV: '/';
-MOD: '%';
-POW: '^';
-
-COMPARE: '<>';
-LT: '<';
-LTE: '<=';
-GT: '>';
-GTE: '>=';
-EQ: '==';
-EQ_STRICT: '===';
-NEQ: '!=';
-NEQ_STRICT: '!==';
-
-NOT: '!';
-AND: '&';
-XOR: '~';
-OR: '|';
-
-COMMA: ',';
-
-L_PAREN: '(';
-R_PAREN: ')';
-
-SPACE: [ \r\n\t]+ -> skip;
+STRING: '"' -> popMode;
+TEXT: (. | '\\' .) -> more;

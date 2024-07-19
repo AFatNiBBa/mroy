@@ -12,9 +12,11 @@ sequence: expr (COMMA expr)*;
 expr
     : NUMBER
     | ID
+    | STRING
     | expr DOT ID
     | L_PAREN sequence R_PAREN
     | expr L_PAREN sequence? R_PAREN
+    | expr STRING
     | expr MOD
     | (LENGTH | PLUS | MINUS | MUL | NOT | AND | XOR) expr
     | <assoc=right> expr POW expr
