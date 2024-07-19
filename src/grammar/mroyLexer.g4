@@ -40,7 +40,6 @@ ID: ID_CHAR_FIRST ID_CHAR*;
 DOT: '.';
 
 LENGTH: '#';
-NOT: '!';
 
 PLUS: '+';
 MINUS: '-';
@@ -49,6 +48,7 @@ DIV: '/';
 MOD: '%';
 POW: '^';
 
+NOT: '!';
 AND: '&';
 XOR: '~';
 OR: '|';

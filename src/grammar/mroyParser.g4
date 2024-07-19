@@ -5,14 +5,22 @@ options { tokenVocab = mroyLexer; }
 
 //////////////////////////////////////////////////////////////////////////
 
-start: expr EOF;
+start: sequence EOF;
 
 sequence: expr (COMMA expr)*;
 
 expr
     : NUMBER
     | ID
-    | L_PAREN expr R_PAREN
-    | expr L_PAREN sequence? R_PAREN
     | expr DOT ID
+    | L_PAREN sequence R_PAREN
+    | expr L_PAREN sequence? R_PAREN
+    | expr MOD
+    | (LENGTH | PLUS | MINUS | MUL | NOT | AND | XOR) expr
+    | <assoc=right> expr POW expr
+    | expr (MUL | DIV | MOD) expr
+    | expr (PLUS | MINUS) expr
+    | expr AND expr
+    | expr XOR expr
+    | expr OR expr
     ;
