@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "antlr-debug",
+            "request": "launch",
+            "name": "Debug Current Grammar",
+            "input": "${file}",
+            "grammar": "src/grammar/mroyParser.g4",
+            "visualParseTree": true
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "antlr4.generation": {
+        "mode": "internal",
+        "listeners": true,
+        "visitors": false
+    },
+    "antlr4.debug": {
+        "visualParseTreeHorizontal": false,
+        "visualParseTreeClustered": true
+    }
+}
